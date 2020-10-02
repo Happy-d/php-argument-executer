@@ -1,1 +1,0 @@
-Icon(icon.ico) made by Adib Sulthon from www.flaticon.com
