@@ -7,6 +7,15 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
+How to download the installer:
+
+1. Navigate to PHPArgvExecuterIntstaller.exe
+
+2. Click Download
+
+3. After install, there may not be a shortcut on your desktop. So just type "main.exe" into your search bar and create a shortcut.
+
+
 How to use the software:
 
 1. Run the installer.
@@ -23,4 +32,4 @@ Notes:
 - In your PHP script, use $argv or $argc to get the arguments
 - You don't need to re-upload the file everytime you make a change, just save it.
 - You must must use "\n" instead of the "br" tag
-- Make sure XAMPP is running (or whatever you use)
+- Make sure XAMPP is running (its actually not necessary)
