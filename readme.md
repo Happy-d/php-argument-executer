@@ -9,7 +9,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 How to download the installer:
 
-1. Navigate to PHPArgvExecuterIntstaller.exe
+1. Navigate to PHPArgvExecuteIntstaller.exe
 
 2. Click Download
 
