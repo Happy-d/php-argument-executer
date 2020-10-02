@@ -186,7 +186,7 @@ class App(Frame):
     def execute(self):
         args = self.arg_var.get().split(' ')
 
-        command = ['C:/xampp/php/php.exe', '{}'.format(self.filename)]
+        command = ['C:/xampp/php/php.exe', '{}'.format(self.dir_name)]
 
         for arg in args:
             command.append(arg)
