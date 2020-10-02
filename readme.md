@@ -20,7 +20,7 @@ How to use the software:
 
 1. Run the installer.
 
-2. Open the exe file.
+2. Open the main.exe file.
 
 3. Select your PHP script.
 
