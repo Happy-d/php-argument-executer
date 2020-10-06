@@ -9,18 +9,18 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 How to download the installer:
 
-1. Navigate to PHPArgvExecuteIntstaller.exe
+1. Navigate to PHPArgvExecuteIntstaller.exe (it may include the version)
 
 2. Click Download
 
-3. After install, there may not be a shortcut on your desktop. So just type "main.exe" into your search bar and create a shortcut.
+3. After install, there may not be a shortcut on your desktop. So just type "PHPArgvExecuter.exe" into your search bar and create a shortcut.
 
 
 How to use the software:
 
 1. Run the installer.
 
-2. Open the "main.exe".
+2. Open the "PHPArgvExecuter.exe".
 
 3. Select your PHP script.
 
@@ -30,6 +30,4 @@ How to use the software:
 
 Notes:
 - In your PHP script, use $argv or $argc to get the arguments
-- You don't need to re-upload the file everytime you make a change, just save it.
-- You must must use "\n" instead of the "br" tag
-- Make sure XAMPP is running (its actually not necessary)
+- You don't need to re-upload the file everytime you make a change, just save it in your IDE.
