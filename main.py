@@ -5,6 +5,8 @@ import subprocess
 import os
 
 
+version = "beta-v1.0.1"
+
 # class ArgumentEntry(Entry):
 #     def __init__(self, master=None, index=None):
 #         super().__init__(Entry)
@@ -33,14 +35,14 @@ import os
 
 class App(Frame):
 
-    def __init__(self, master=None):
+    def __init__(self, master=None, build=None):
         super().__init__(master)
         self.master = master
         self.winX = 800
-        self.winY = 400
+        self.winY = 600
         self.win_bg = "gray21"
         # self.master.geometry("{}x{}".format(self.winX, self.winY))
-        self.master.title("PHP Argument Executer (Beta)")
+        self.master.title("PHP Argument Executer ({})".format(build))
         self.master.iconbitmap("icon.ico")
         self.master.configure(bg=self.win_bg)
         self.padding = 10
@@ -82,7 +84,6 @@ class App(Frame):
                                command=self.get_dir)
 
         self.path_script = Label(self.canvas_path,
-                                 text="Filename: ",
                                  bg=self.canvas_bg,
                                  fg=self.text_fg)
 
@@ -110,12 +111,17 @@ class App(Frame):
                              textvariable=self.arg_var,
                              bg=self.canvas_bg,
                              fg=self.text_fg)
-        self.arg_ent.insert(END, "argv1 argv2 argv3")
+        self.arg_ent.insert(END, "argv1~argv2~argv3")
 
         self.arg_info = Label(self.canvas_arg,
-                              text="* Leave a space between arguments",
+                              text="* Make sure to leave a '~' between arguments",
                               bg=self.canvas_bg,
                               fg=self.text_fg)
+        self.arg_clear = Button(self.canvas_arg,
+                                text="Clear",
+                                bg=self.canvas_bg,
+                                fg=self.text_fg,
+                                command=self.clear_args)
 
         # Output Canvas
         self.canvas_out = Canvas(self.master,
@@ -140,9 +146,12 @@ class App(Frame):
                                bg=self.canvas_bg,
                                fg=self.text_fg,
                                command=self.execute)
-        self.out_error = Label(self.canvas_out,
-                               bg=self.canvas_bg,
-                               fg="firebrick3")
+        # self.out_error = Text(self.canvas_out,
+        #                       height=1,
+        #                       width=50,
+        #                       highlightthickness=0,
+        #                       bg=self.canvas_bg,
+        #                       fg="firebrick3")
 
         self.place()
         self.update()
@@ -154,24 +163,25 @@ class App(Frame):
         self.path_lbl.place(x=140, y=30, anchor="e")
         self.path_ent.place(x=150, y=30, anchor="w")
         self.path_btn.place(x=500, y=30, anchor="w")
-        self.path_script.place(x=650, y=30, anchor="center")
+        self.path_script.place(x=680, y=30, anchor="center")
 
         # Arguments Canvas
         self.canvas_arg.grid(row=1, padx=self.padding, pady=self.padding)
         self.arg_title.place(x=6, y=0)
         self.arg_lbl.place(x=140, y=50, anchor="e")
         self.arg_ent.place(x=150, y=50, anchor="w")
-        self.arg_info.place(x=560, y=50, anchor="w")
+        self.arg_info.place(x=150, y=75, anchor="w")
+        self.arg_clear.place(x=560, y=50, anchor="w")
 
         # Output Canvas
         self.canvas_out.grid(row=2, padx=self.padding, pady=self.padding)
         self.out_title.place(x=6, y=0)
         self.out_box.place(x=16, y=40)
         self.exec_btn.place(x=self.winX - 40, y=20, anchor="e")
-        self.out_error.place(x=150, y=20, anchor="w")
+        # self.out_error.place(x=150, y=20, anchor="w")
 
     def update(self):
-        self.path_script.configure(text="Filename: " + self.filename)
+        self.path_script.configure(text=self.filename)
 
     def get_dir(self):
         file = askopenfile(filetypes=[('PHP Files', '*.php')],
@@ -184,7 +194,10 @@ class App(Frame):
             self.update()
 
     def execute(self):
-        args = self.arg_var.get().split(' ')
+        self.out_box.delete("1.0", "end")
+        self.out_box.configure(fg="white")
+
+        args = self.arg_var.get().split('~')
 
         command = ['C:/xampp/php/php.exe', '{}'.format(self.dir_name)]
 
@@ -203,17 +216,22 @@ class App(Frame):
             self.out_box.delete("1.0", "end")
 
             self.out_box.insert(END, output)
-        except subprocess.CalledProcessError:
-            self.out_error['text'] = "ERROR: No file has been selected. Please select a file path."
-            self.after(4000, self.clear_error)
+        except subprocess.CalledProcessError as error:
+            self.out_box.delete("1.0", "end")
+            self.out_box.configure(fg="firebrick3")
+            if self.dir_name == "C:/":
+                hint = "(Try selecting a path)"
+            else:
+                hint = ""
+            self.out_box.insert(END, "ERROR: {} {}".format(error, hint))
 
-    def clear_error(self):
-        self.out_error['text'] = ""
+    def clear_args(self):
+        self.arg_ent.delete(0, END)
 
 
 def main():
     root = Tk()
-    app = App(root)
+    app = App(root, version)
     app.mainloop()
 
 
