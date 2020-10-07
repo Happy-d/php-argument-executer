@@ -1,4 +1,4 @@
-Read license.md before using.
+<b>Read license.md before using.</b>
 
 How to download the installer:
 
